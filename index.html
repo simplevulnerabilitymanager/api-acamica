@@ -7,11 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="seguidor">
-        <p id="mip">
-
-        </p>
-    </div>
 
     <div id="misseguidores">
         <p id="miseguidor1">
@@ -36,25 +31,7 @@
     <div id="misseguidoresv2">
     </div>
     <script>
-        //Creación de promesas
-        let promesa1 = new Promise((resolve, reject) => {
-            //resolve y reject
-            setTimeout(function(){
-                resolve("Promesa resuelta!");
-            }, 250);
-            setTimeout(function(){
-                reject("Promesa rechazada!");
-            }, 350);
 
-        });
-
-
-        //then and catch
-        promesa1.then((successMessage) => {
-            console.log('Respuesta de promesa1: ' + successMessage);
-        }).catch((errorMessage) => {
-            console.log("¡Error de promesa1! " + errorMessage);
-        });
 
         ///////////////////////////////////////////////////
         // ejemplo de fetch con promesas
@@ -99,18 +76,6 @@
         }
         var usuario = prompt("Ingrese el nombre de usuario");
         getDogImg(`https://api.github.com/users/${usuario}/followers`);
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     </script>
