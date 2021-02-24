@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="seguidor">
+        <p id="mip">
+
+        </p>
+    </div>
+
+    <div id="misseguidores">
+        <p id="miseguidor1">
+            ejemplo1
+        </p>
+        <p id="miseguidor2">
+            ejemplo2
+        </p>
+        <p id="miseguidor3">
+            ejemplo3
+        </p>
+        <p id="miseguidor4">
+            ejemplo4
+        </p>
+        <p id="miseguidor5">
+            ejemplo5
+        </p>
+    </div>
+
+    <hr>
+
+    <div id="misseguidoresv2">
+    </div>
+    <script>
+        //Creación de promesas
+        let promesa1 = new Promise((resolve, reject) => {
+            //resolve y reject
+            setTimeout(function(){
+                resolve("Promesa resuelta!");
+            }, 250);
+            setTimeout(function(){
+                reject("Promesa rechazada!");
+            }, 350);
+
+        });
+
+
+        //then and catch
+        promesa1.then((successMessage) => {
+            console.log('Respuesta de promesa1: ' + successMessage);
+        }).catch((errorMessage) => {
+            console.log("¡Error de promesa1! " + errorMessage);
+        });
+
+        ///////////////////////////////////////////////////
+        // ejemplo de fetch con promesas
+        let misseguidoresv2 = document.getElementById('misseguidoresv2');
+
+        function getDogImg(url) {
+
+            fetch(url)//la funcion que sirve para hacer un pedido a una api
+                .then(response => response.json())
+                .then(json => {
+
+                    for (var i=0 ; i<= 4 ; i++){
+                        let mip = document.createElement('p');
+                        mip.textContent=json[i].login;
+
+                        misseguidoresv2.appendChild(mip);
+                    }
+
+
+
+                    let seguidor1 = document.getElementById('miseguidor1');
+                    seguidor1.innerHTML=json[0].login;
+
+                    let seguidor2 = document.getElementById('miseguidor2');
+                    seguidor2.innerHTML=json[1].login;
+
+                    let seguidor3 = document.getElementById('miseguidor3');
+                    seguidor3.innerHTML=json[2].login;
+
+                    let seguidor4 = document.getElementById('miseguidor4');
+                    seguidor4.innerHTML=json[3].login;
+
+                    let seguidor5 = document.getElementById('miseguidor5');
+                    seguidor5.innerHTML=json[4].login;
+
+
+
+                }).catch(err => {
+                    console.error('fetch failed', err);
+                });
+
+        }
+        var usuario = prompt("Ingrese el nombre de usuario");
+        getDogImg(`https://api.github.com/users/${usuario}/followers`);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
